@@ -1,6 +1,6 @@
 package org.myboy.listener
 
-import org.myboy.snake.DirectEnum
+import org.myboy.enums.DirectEnum
 import org.myboy.snake.Snake
 import java.awt.event.KeyEvent
 import java.awt.event.KeyListener

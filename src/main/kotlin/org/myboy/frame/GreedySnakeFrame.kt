@@ -5,10 +5,11 @@ import javax.swing.JFrame
 class GreedySnakeFrame : JFrame("贪吃蛇") {
 
     init {
-        setBounds(30,30, 200, 200)
+        setLocation(400,200)
         defaultCloseOperation = EXIT_ON_CLOSE
         isResizable = false
-        add(GreedySnakePanel())
+        contentPane.add(GreedySnakePanel())
+        pack()
         isVisible = true
     }
 
