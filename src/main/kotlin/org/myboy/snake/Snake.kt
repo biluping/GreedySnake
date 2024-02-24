@@ -32,7 +32,7 @@ class Snake {
 
     fun paintSnake(g: Graphics) {
         for (body in bodyList) {
-            if (body.isHead) g.color = Color.orange else g.color = Color.gray
+            if (body.isHead) g.color = Color.orange else g.color = Color.green
             g.fillRect(body.x, body.y, snakeWidth, snakeHeight)
         }
     }

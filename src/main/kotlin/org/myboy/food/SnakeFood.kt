@@ -26,7 +26,7 @@ class SnakeFood {
     }
 
      fun paintFood(g: Graphics) {
-        g.color = Color.green
+        g.color = Color.blue
         g.fillRect(x, y, snakeWidth, snakeHeight)
     }
 }

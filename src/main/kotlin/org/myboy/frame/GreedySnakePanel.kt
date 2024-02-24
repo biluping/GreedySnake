@@ -17,7 +17,7 @@ class GreedySnakePanel : JPanel() {
     private val food = SnakeFood()
 
     init {
-        background = Color.WHITE
+        background = Color(0x3a3a3a)
         preferredSize = Dimension(800, 600)
         // 只有设置了聚焦，键盘事件才能触发
         isFocusable = true
