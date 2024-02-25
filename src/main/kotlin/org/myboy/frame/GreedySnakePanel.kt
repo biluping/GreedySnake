@@ -43,10 +43,18 @@ class GreedySnakePanel : JPanel() {
             food.generateFood()
         }
         snake.paintSnake(g)
+        drawScore(g)
+
     }
 
     fun startOrStop() {
         isStart = !isStart
+    }
+
+    private fun drawScore(g: Graphics) {
+        g.color = Color.white
+        g.font = Font("微软雅黑", Font.PLAIN, 12)
+        g.drawString("得分：${snake.getScore()}", frameWidth - 70, 30)
     }
 
 }

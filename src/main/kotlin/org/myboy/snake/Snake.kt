@@ -12,7 +12,7 @@ import java.util.*
 
 class Snake {
     var direct = DirectEnum.randomDirect()
-    val random = Random()
+    private val random = Random()
     private val bodyList = arrayListOf<SnakeBody>()
 
     init {
@@ -88,5 +88,9 @@ class Snake {
     fun eatFood() {
         val last = bodyList.last()
         bodyList.add(SnakeBody(last.x, last.y, false))
+    }
+
+    fun getScore() : Int {
+        return bodyList.size
     }
 }
