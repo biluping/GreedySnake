@@ -11,21 +11,24 @@ import java.util.*
 class SnakeFood {
 
     private val random = Random()
-    var x = -1
-    var y = -1
+    var x: Int
+    var y: Int
 
     init {
-        generateFood()
+        x = generateCoordinate(frameWidth, snakeWidth)
+        y = generateCoordinate(frameHeight, snakeHeight)
+    }
+
+    private fun generateCoordinate(frameSize: Int, snakeSize: Int): Int {
+        return random.nextInt(frameSize / snakeSize) * snakeSize
     }
 
     fun generateFood() {
-        x = random.nextInt(frameWidth / snakeWidth) * snakeWidth
-        y = random.nextInt(frameHeight / snakeHeight) * snakeHeight
-        println(x)
-        println(y)
+        x = generateCoordinate(frameWidth, snakeWidth)
+        y = generateCoordinate(frameHeight, snakeHeight)
     }
 
-     fun paintFood(g: Graphics) {
+    fun paintFood(g: Graphics) {
         g.color = Color.blue
         g.fillRect(x, y, snakeWidth, snakeHeight)
     }
