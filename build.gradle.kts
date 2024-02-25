@@ -1,5 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.9.21"
+    kotlin("jvm") version "1.9.22"
+    kotlin("plugin.serialization") version "1.9.22"
 }
 
 group = "org.myboy"
@@ -12,6 +13,7 @@ repositories {
 dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     implementation("cn.hutool:hutool-all:5.8.26")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 }
 
 tasks.test {
@@ -19,6 +21,9 @@ tasks.test {
 }
 
 tasks.jar {
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
     manifest {
         attributes(mapOf("Main-Class" to "org.myboy.MainKt"))
     }

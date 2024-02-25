@@ -1,25 +1,23 @@
 package org.myboy.snake
 
+import kotlinx.serialization.Serializable
 import org.myboy.enums.DirectEnum
 import org.myboy.food.SnakeFood
 import org.myboy.frameHeight
 import org.myboy.frameWidth
+import org.myboy.net.NetUtil
 import org.myboy.snakeHeight
 import org.myboy.snakeWidth
 import java.awt.Color
 import java.awt.Graphics
 import java.util.*
 
-class Snake {
+@Serializable
+class Snake(val id: String = UUID.randomUUID().toString(), private val bodyList: ArrayList<SnakeBody> = arrayListOf()) {
     var direct = DirectEnum.randomDirect()
-    private val random = Random()
-    private val bodyList = arrayListOf<SnakeBody>()
-
-    init {
-        generateSnake()
-    }
 
     fun generateSnake() {
+        val random = Random()
         direct = DirectEnum.randomDirect()
         val headX = random.nextInt(3, frameWidth / snakeWidth) * snakeWidth
         val headY = random.nextInt(3, frameHeight / snakeHeight) * snakeHeight
@@ -73,6 +71,8 @@ class Snake {
         if (last.x > frameWidth) last.x = 0
         if (last.y < 0) last.y = frameHeight
         if (last.y > frameHeight) last.y = 0
+
+        NetUtil.pushSnake(this)
     }
 
     /**
@@ -88,6 +88,7 @@ class Snake {
     fun eatFood() {
         val last = bodyList.last()
         bodyList.add(SnakeBody(last.x, last.y, false))
+        NetUtil.pushSnake(this)
     }
 
     fun getScore() : Int {
