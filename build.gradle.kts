@@ -20,21 +20,24 @@ tasks.test {
     useJUnitPlatform()
 }
 
+
 tasks.jar {
 
+    // 打包时发现文件重复自动排除，防止报错
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
+    // 添加主类
     manifest {
         attributes(mapOf("Main-Class" to "org.myboy.MainKt"))
     }
 
-    // 这里不加会报错依赖找不到
+    // 添加源文件
+    from(sourceSets.main.get().output)
+
+    // 添加依赖
     from(configurations.runtimeClasspath.get().map {
         if (it.isDirectory) it else zipTree(it)
     })
-    val sourcesMain = sourceSets.main.get()
-    sourcesMain.allSource.forEach { println("add from sources: ${it.name}") }
-    from(sourcesMain.output)
 }
 
 kotlin {
