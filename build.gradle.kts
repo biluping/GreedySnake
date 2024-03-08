@@ -31,8 +31,8 @@ tasks.jar {
         attributes(mapOf("Main-Class" to "org.myboy.MainKt"))
     }
 
-    // 添加源文件
-    from(sourceSets.main.get().output)
+//    // 添加源文件
+//    from(sourceSets.main.get().output)
 
     // 添加依赖
     from(configurations.runtimeClasspath.get().map {
